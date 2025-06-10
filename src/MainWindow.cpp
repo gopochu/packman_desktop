@@ -4,7 +4,7 @@
 #include <QSpacerItem>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    packageManager = new PackageManager(this); // Создаем PackageManager
+    packageManager = new PackageManager(this);
     setupUI();
     connectSignalsAndSlots();
 
@@ -28,7 +28,6 @@ void MainWindow::setupUI() {
     centralFrame = new QFrame(this);
     centralFrame->setFrameShape(QFrame::StyledPanel);
     stackedLayout = new QStackedLayout(centralFrame); // QStackedLayout теперь внутри centralFrame
-    // centralFrame->setLayout(stackedLayout); // QStackedLayout уже установлен как layout для centralFrame при создании
 
     createPages(); // Создаем и добавляем страницы в stackedLayout
 
@@ -226,6 +225,4 @@ void MainWindow::displayStatusMessage(const QString& message) {
     // или в отдельный QTextEdit для логов, если потребуется.
     // Пока просто выводим в qDebug и, возможно, обновляем statusLabel, если это не сообщение о финальном результате.
     qDebug() << "PackageManager Status:" << message;
-    // Если сообщение не является финальным результатом (можно добавить флаг в сигнал или анализировать текст)
-    // statusLabel->setText(message); // Осторожно, чтобы не перезаписать финальный результат от installationFinished
 }

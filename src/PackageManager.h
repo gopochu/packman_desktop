@@ -1,8 +1,11 @@
 #pragma once
 
+#include "PackageInfo.h"
+
 #include <QObject>
 #include <QList>
-#include "PackageInfo.h"
+#include <QScopedPointer>
+#include <QTemporaryDir>
 
 class PackageManager : public QObject {
     Q_OBJECT
@@ -27,8 +30,10 @@ signals:
 
 
 private:
-    QList<PackageInfo> availablePackages; // Список пакетов, известных менеджеру
+    // Список пакетов, известных менеджеру
+    QList<PackageInfo> availablePackages; 
 
-    // Инициализация списка доступных пакетов (можно загружать из конфиг. файла или захардкодить)
+    // Инициализация списка доступных пакетов
     void loadPackageDefinitions();
+    QScopedPointer<QTemporaryDir> m_tempDir;
 };

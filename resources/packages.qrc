@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/packages">
+        <file alias="postgresql.tar.gz">packages/postgresql-17.5.tar.gz</file>
+        <file alias="openldap.tgz">packages/openldap-2.6.10.tgz</file>
+    </qresource>
+</RCC>

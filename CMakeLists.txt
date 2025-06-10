@@ -1,31 +1,25 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.16)
+project(QtInstallerDemo LANGUAGES CXX)
 
-project(pacman LANGUAGES CXX)
-
-find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets)
-
-if(NOT Qt5_FOUND)
-    message(FATAL_ERROR "Qt5 not found. Please install Qt5 development packages.")
-endif()
-
-
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
-set(CMAKE_CXX_STANDARD 20
-)
-add_executable(pacman 
+
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+# Собираем список всех исходников
+set(SOURCES
     src/ApplicationCore.cpp
     src/MainWindow.cpp
-    src/MainWindow.h
     src/PackageManager.cpp
-    src/PackageManager.h
     src/PackageInfo.h
+    src/PackageManager.h
+    src/MainWindow.h
+    resources/packages.qrc
 )
 
-target_link_libraries(pacman PRIVATE
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Widgets
-)
+add_executable(${PROJECT_NAME} ${SOURCES})
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
